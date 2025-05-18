@@ -1,0 +1,11 @@
+body {
+    background: linear-gradient(to bottom, #FFDEE9, #B5FFFC); /* Soft pastel gradient */
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+main {
+    flex: 1;
+}

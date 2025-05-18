@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Assign Task - Collection{% endblock %}
+{% block content %}
+<section class="max-w-6xl mx-auto grid grid-cols-2 gap-8">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-4">All Tasks</h2>
+        <ul id="all-tasks" class="space-y-4 overscroll-auto max-h-[300px] overflow-y-auto">
+            {% for task in tasks %}
+                <li class="flex items-center">
+                    <label for="task-{{forloop.counter}}">
+                        <input id="task-{{forloop.counter}}" type="checkbox" class="task-checkbox mr-2" value="{{task.unique_id}}">
+                        <span class="text-gray-700">{{task.text}}</span>
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-lg font-bold text-gray-800 mb-4">Assigned to Collection</h2>
+        <ul id="assigned-tasks" class="space-y-4">
+            <!-- Dynamically added assigned tasks -->
+        </ul>
+    </div>
+</section>
+<div class="text-center mt-8">
+    <form>
+        {% csrf_token %}
+        <input name="collection" type="hidden" value="{{collection.unique_id}}" />
+        <button type="button" id="save-config" class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
+            Save Configuration
+        </button>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/collection/assign.js' %}"></script>
+{% endblock %}

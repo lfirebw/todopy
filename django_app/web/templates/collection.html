@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Collection{% endblock %}
+{% block content %}
+  <h1>Collection</h1>
+  <h1 class="text-5xl font-bold text-gray-800">All collection stored</h1>
+  <p class="mt-4 text-xl text-gray-600">Organize your collection and to be a pro</p>
+
+  <div class="my-2 flex justify-end">
+    <a class="px-6 py-2 text-white bg-sky-500 hover:bg-blue-500 rounded-lg" href="/collection/create">
+      New Collection
+    </a>
+  </div>
+  <section>
+    <!--show all collection-->
+    <ul>
+      {% for item in collections %}
+        <li class="bg-white shadow-md rounded-lg my-2 p-4 flex items-center justify-between">
+          <span class="text-lg text-gray-700">
+            {{item.name}}
+          </span>
+          <div class="flex justify-between gap-2">
+            <a class="text-sm text-sky-800" href="/collection/assigntasks/{{item.unique_id}}">
+              Assign Tasks
+            </a>
+            <a class="text-sm text-yellow-500" href="/collection/edit/{{item.unique_id}}">
+              Edit
+            </a>
+            <button class="text-sm text-red-500" type="button">
+              Delete
+            </button>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}
