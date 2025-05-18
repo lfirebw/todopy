@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <section class="mb-2">
+    <h1>Home</h1>
+    <h1 class="text-5xl font-bold text-gray-800">Welcome to Your To-Do List</h1>
+    <p class="mt-4 text-xl text-gray-600">Organize your tasks with ease and elegance</p>
+  </section>
+  <section class="max-w-4xl mx-auto">
+    <p id="no-todos" class="text-center text-gray-500 text-lg">No to-dos yet. Add your first task!</p>
+    <ul id="todo-list" class="space-y-4">
+      {% for item in items %}
+        <li class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center" data-pid="{{item.unique_id}}">
+          <input type="checkbox" class="mr-4" />
+          <span class="text-lg text-gray-700">
+            {{ item.text }}
+          </span>
+          <button type="button" class="text-sm text-red-500 hover:text-red-700">
+            Delete
+          </button>
+        </li>
+      {% endfor %}
+      <!--dynamic-->
+    </ul>
+    <div class="mt-6 text-center">
+      <form>
+        {% csrf_token %}
+        <button type="button" id="add-todo" class="px-6 py-2 mb-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
+            + Add To-Do
+        </button>
+      </form>
+    </div>
+  </section>
+  <script src="{% static 'js/todo.js' %}"></script>
+{% endblock %}
